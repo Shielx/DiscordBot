@@ -18,7 +18,7 @@ client.on('message', msg => {
     const arg = args.join(" ");
     // --------------------------------------------------------
 
-    require('./commands.js').command(client, msg, arg)
+    require('./commands.js').command(client, msg, arg, command)
 
 });
 

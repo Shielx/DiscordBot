@@ -1,14 +1,12 @@
-exports.command = function (bot, msg, arg) {
+exports.command = function (bot, msg, arg, commandName) {
     const fs = require('fs');
-    fs.readdirSync("./commands").forEach(dirs => { // Return folders from commands folder
-        fs.readdirSync("./commands/" + dirs).forEach(commands => { // Return files from folders
-            const command = commands.split('.')[0].toLowerCase(); // file without ".js"
-            if (msg.content.toLowerCase() == command) {
-                const test = require("./commands/" + dirs + "/" + command); // Require only file from author command
-                // ------------------------ 
-                // instead of "test.command(bot, msg, arg)" command can not be used here
-                test[command](bot, msg, arg) // It's like a function
-                // ------------------------
+    fs.readdirSync("./commands").forEach(directorys => { // Return folders from commands folder
+        fs.readdirSync("./commands/" + directorys).forEach(commandsList => { // Return files from folders
+            const command = commandsList.split('.')[0]; // file without ".js"
+            if (commandName.toLowerCase() == command.toLowerCase()) {
+                console.log("commands.js>if arg: " + arg);
+                require("./commands/" + directorys + "/" + command)[command](bot, msg, arg); // Require only file from author command
+                // instead of "test.command(bot, msg, arg)" 'command' can not be used here
             }
         });
     });
