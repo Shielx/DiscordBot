@@ -4,7 +4,6 @@ exports.command = function (bot, msg, arg, commandName) {
         fs.readdirSync("./commands/" + directorys).forEach(commandsList => { // Return files from folders
             const command = commandsList.split('.')[0]; // file without ".js"
             if (commandName.toLowerCase() == command.toLowerCase()) {
-                console.log("commands.js>if arg: " + arg);
                 require("./commands/" + directorys + "/" + command)[command](bot, msg, arg); // Require only file from author command
                 // instead of "test.command(bot, msg, arg)" 'command' can not be used here
             }
