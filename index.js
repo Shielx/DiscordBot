@@ -1,9 +1,20 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client();
 const settings = require('./settings.json')
+const moduleParser = require('./modules/rssParser.js')
+const moduleSqlite3 = require('./modules/sqlite3.js')
+const moduleHttp = require('./modules/http.js')
+const dofus = require('./modules/games/dofus.js')
 
 bot.on('ready', () => {
-    
+    // moduleParser.rssParser()
+    //     .then(function (rssResult) {
+    //         moduleSqlite3.getNasaPotd(bot, rssResult)
+    //     })
+    // bob = new moduleParser.rssParser('https://apod.nasa.gov/apod.rss')
+    // bob.parseItems().then(function (lol) {console.log(lol)})
+    dofus.dofusChangelog(bot)
+    // moduleHttp.httpNasaAPOD(bot)
 });
 
 bot.on('message', msg => {

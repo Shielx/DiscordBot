@@ -1,7 +1,7 @@
 exports.play = function (bot, msg, arg) {
     const ytdl = require('ytdl-core');
     let voiceChannel;
-    msg.delete(0); // Delete message for embed view
+    msg.delete(); // Delete message for embed view
     if (!msg.member.voice.channel) return msg.reply("You are not in channel") // Check if it is in a channel, otherwise return that it is not there
     // ------------------------------------------------------------
     // We set the voiceChannel where the user is
@@ -36,8 +36,7 @@ exports.play = function (bot, msg, arg) {
                             }
                         }
                     })
-                    const stream = ytdl(arg); // http://www.youtube.com/watch?v=A02s8omM_hI
-                    connection.playStream(stream); // Stream music
+                    connection.play(ytdl(arg, { quality: 'highestaudio' }));
                 })
                 .catch(function (error) { // If he not "promise", then we send to the user that we can not
                 console.log(error);
